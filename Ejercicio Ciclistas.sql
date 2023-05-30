@@ -82,3 +82,8 @@ INSERT INTO [dbo].[Ciclistas]
 GO
 
 
+insert into Ciclistas values ('Roberto Perez',1, '13/09/2000');
+insert into Ciclistas values ('Pablo Garcia',2, '23/02/1992');
+insert into Ciclistas values ('Jorge Docampo',1, '17/04/1942');
+insert into Ciclistas values ('Lionel Scaloni',1, '09/01/1962');
+insert into Ciclistas values ('Lionel Scaloni',3, '13/09/1962');
