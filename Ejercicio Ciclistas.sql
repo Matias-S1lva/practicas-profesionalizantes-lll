@@ -139,6 +139,7 @@ INSERT INTO [dbo].[Equipos]
 		'Ana Paula Castro')
 GO
 
+
 --FORMATO DE FECHA: AAAA-MM-DD para que funcione en otra versión de SQL
 insert into Ciclistas values ('Roberto Perez',1, '2000-09-13');
 insert into Ciclistas values ('Pablo Garcia',2, '1992-02-23');
