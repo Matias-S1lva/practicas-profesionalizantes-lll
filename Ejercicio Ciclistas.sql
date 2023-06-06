@@ -8,10 +8,17 @@ go
 use DBCiclistas
 go
 --creacion de tablas
+create table Paises(
+ID int identity(1,1) primary key,
+Descripcion varchar(60)
+constraint ukDescripcion unique (Descripcion)
+);
+go
+
 create table Ciclistas(
 ID int identity(1,1) primary key,
 Nombre varchar(60) not null,
-Nacionalidad varchar(120) not null,
+Fk_Pais_origen int not null foreign key references Paises(ID),
 Fecha_nacimiento Date
 );
 go
@@ -19,8 +26,8 @@ go
 create table Equipos(
 ID int identity(1,1) primary key,
 Nombre varchar(60) not null,
-Nacionalidad varchar(60),
-Dir varchar(50)
+Fk_Pais_origen int not null foreign key references Paises(ID),
+Director varchar(50)
 );
 go
 
@@ -49,41 +56,93 @@ constraint ukParticipaciones unique (FK_Equipo, FK_Prueba)
 );
 go
 
-create table Nacionalidades(
-ID int identity(1,1) primary key,
-Descripcion varchar(60)
-);
-
--- agregando Nacionalidades  
-INSERT INTO [dbo].[Nacionalidades]
+-- agregando Paises origen  
+INSERT INTO [dbo].[Paises]
            ([Descripcion])
      VALUES
            ('Argentina')
 GO
-INSERT INTO [dbo].[Nacionalidades]
+
+INSERT INTO [dbo].[Paises]
            ([Descripcion])
      VALUES
            ('Francia')
 GO
-INSERT INTO [dbo].[Nacionalidades]
+
+INSERT INTO [dbo].[Paises]
            ([Descripcion])
      VALUES
            ('Brasil')
 GO
+
+INSERT INTO [dbo].[Paises]
+           ([Descripcion])
+     VALUES
+           ('España')
+GO
+
+INSERT INTO [dbo].[Paises]
+           ([Descripcion])
+     VALUES
+           ('Estados Unidos')
+GO
+
 -- agregando Ciclistas
 INSERT INTO [dbo].[Ciclistas]
            ([Nombre]
-           ,[Nacionalidad]
+           ,[Fk_Pais_origen]
            ,[Fecha_nacimiento])
      VALUES
            ('Scaloni'
-           ,'Argentina'
+           ,1
            ,'1987-06-24')
 GO
 
+-- agregando Equipos
+INSERT INTO [dbo].[Equipos]
+			([Nombre],
+			[Fk_Pais_origen],
+			[Director])
+	VALUES
+		('Movistar Team',
+		4,
+		'Alfonso Galilea')
+GO
 
-insert into Ciclistas values ('Roberto Perez',1, '13/09/2000');
-insert into Ciclistas values ('Pablo Garcia',2, '23/02/1992');
-insert into Ciclistas values ('Jorge Docampo',1, '17/04/1942');
-insert into Ciclistas values ('Lionel Scaloni',1, '09/01/1962');
-insert into Ciclistas values ('Lionel Scaloni',3, '13/09/1962');
+INSERT INTO [dbo].[Equipos]
+			([Nombre],
+			[Fk_Pais_origen],
+			[Director])
+	VALUES
+		('Trek-Segafredo',
+		5,
+		'Steven de Jongh')
+GO
+
+INSERT INTO [dbo].[Equipos]
+			([Nombre],
+			[Fk_Pais_origen],
+			[Director])
+	VALUES
+		('Weber Shimano Ladies Power',
+		1,
+		'Veronica Martinez')
+GO
+
+INSERT INTO [dbo].[Equipos]
+			([Nombre],
+			[Fk_Pais_origen],
+			[Director])
+	VALUES
+		('Soul Brasil Pro Cycling Team',
+		3,
+		'Ana Paula Castro')
+GO
+
+--FORMATO DE FECHA: AAAA-MM-DD para que funcione en otra versión de SQL
+insert into Ciclistas values ('Roberto Perez',1, '2000-09-13');
+insert into Ciclistas values ('Pablo Garcia',2, '1992-02-23');
+insert into Ciclistas values ('Jorge Docampo',1, '1942-04-17');
+insert into Ciclistas values ('Lionel Scaloni',1, '1962-01-09');
+insert into Ciclistas values ('Lionel Marconi',3, '1962-09-13');
+
