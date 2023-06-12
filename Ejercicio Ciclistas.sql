@@ -107,3 +107,9 @@ insert into Pruebas values (88, 'Paris-Niza', '2022', 8, 1197, 8);
 insert into Pruebas values (60, 'Eschborn-Frankfurt der Radklassiker', '2022', 1, 185, 9);
 insert into Pruebas values (85, 'Vuelta a Suiza', '2022', 8, 1340, 10);
 
+--ContratosCiclistas
+insert into Contrato_ciclistas values (7,5,'2018-08-01','2027-01-01');
+insert into Contrato_ciclistas values (6,6,'2021-08-01','2024-08-01');
+insert into Contrato_ciclistas values (8,5,'2016-08-01','2024-08-01');
+insert into Contrato_ciclistas values (9,6, '2022-08-01','2024-08-01');
+insert into Contrato_ciclistas values (10,7, '2010-08-01','2024-08-01');
