@@ -113,3 +113,7 @@ insert into Contrato_ciclistas values (6,6,'2021-08-01','2024-08-01');
 insert into Contrato_ciclistas values (8,5,'2016-08-01','2024-08-01');
 insert into Contrato_ciclistas values (9,6, '2022-08-01','2024-08-01');
 insert into Contrato_ciclistas values (10,7, '2010-08-01','2024-08-01');
+
+--insert Participaciones
+insert into Participaciones (FK_Equipo, FK_Prueba)
+					values (6, 1);
