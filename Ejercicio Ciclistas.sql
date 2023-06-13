@@ -47,7 +47,7 @@ create table Pruebas(
 ID int identity(1,1) primary key,
 Edicion int not null,
 Nombre varchar(60) not null,
-A√±o Date,
+AÒo Date,
 Nro_etapas int,
 Km_totales int,
 Fk_Ganador int foreign key references Ciclistas(ID),
@@ -100,7 +100,7 @@ insert into Ciclistas values ('Sam Bennett', 11, '1990-10-16');
 insert into Ciclistas values ('Geraint Thomas', 13, '1986-05-25'); --10
 
 --Agregando Pruebas
-insert into Pruebas (Edicion, Nombre, A√±o, Nro_etapas, Km_totales, Fk_Ganador) 
+insert into Pruebas (Edicion, Nombre, AÒo, Nro_etapas, Km_totales, Fk_Ganador) 
 	values (109,'Tour de France', '2022', 21, 3350, 7);
 insert into Pruebas values (101, 'Volta a Catalu√±a', '2022', 7, 1213, 6);
 insert into Pruebas values (88, 'Paris-Niza', '2022', 8, 1197, 8);
@@ -117,3 +117,29 @@ insert into Contrato_ciclistas values (10,7, '2010-08-01','2024-08-01');
 --insert Participaciones
 insert into Participaciones (FK_Equipo, FK_Prueba)
 					values (6, 1);
+
+
+--consulta Ciclistas (Nombre + Pais origen)
+select C.Nombre, P.Descripcion from Ciclistas C inner join Paises P 
+on C.Fk_Pais_origen = P.ID where P.Descripcion = 'Argentina'
+
+select count (C.ID) as 'Ciclistas argentinos' from Ciclistas C inner join Paises P
+on C.Fk_Pais_origen = P.ID where P.Descripcion = 'Argentina'
+
+select C.Nombre, P.Descripcion from Ciclistas C inner join Paises P
+on C.Fk_Pais_origen = P.ID where P.Descripcion = 'Argentina' order by C.Nombre asc
+
+select p.Descripcion, count(*) total from Ciclistas C inner join Paises P
+on C.Fk_Pais_origen = P.ID
+group by p.Descripcion order by P.Descripcion desc
+
+
+select p.Descripcion, count(*) total
+from Ciclistas C 
+inner join Paises P on C.Fk_Pais_origen = P.ID 
+group by p.Descripcion
+having count(p.Descripcion)<3
+order by P.Descripcion desc
+
+select c.Nombre from Ciclistas C
+where c.Nombre not like 'Lionel%'
